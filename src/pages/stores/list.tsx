@@ -102,7 +102,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                             key="avatar"
                             dataIndex={["avatar"]}
                             title={t("stores.fields.avatar")}
-                            render={(value) => <Avatar src={value ? value[0].url : ''} />}
+                            render={(value) => <Avatar shape="square" src={value ? value[0].url : ''} />}
                         />
                         <Table.Column
                             dataIndex="title"
@@ -115,6 +115,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                         <Table.Column
                             dataIndex="phone"
                             title={t("stores.fields.phone")}
+                            render={(_, value: any) => `${value.phoneCode} ${value.phone}`}
                         />
                         <Table.Column
                             dataIndex={["address", "addres1"]}

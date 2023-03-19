@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
     Space,
     Input,
+    Button,
 } from "@pankod/refine-antd";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
@@ -144,7 +145,9 @@ export const Address: React.FC<AddressProps> = ({ formProps, name }) => {
                 border: 'solid 1px #ccc'
             }}
         >
-            <div onClick={() => getCurrentLocation()} style={{ color: '#0058ce', textAlign: 'center', cursor: 'pointer' }}>Share your current location</div>
+            <div style={{ textAlign: 'center' }}>
+                <Button type="primary" onClick={() => getCurrentLocation()}>Share your current location</Button>
+            </div>
             <div ref={ref}>
                 <Input
                     value={value}

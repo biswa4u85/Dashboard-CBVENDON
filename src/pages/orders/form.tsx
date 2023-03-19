@@ -180,7 +180,7 @@ export const FormList = ({ formProps, type }: any) => {
         </Col>
         <Col xs={24} lg={8}>
             <Form.Item
-                label={'IsPaid'}
+                label={'Paid'}
                 name="isPaid"
                 rules={[
                     {

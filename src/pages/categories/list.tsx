@@ -231,7 +231,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
             <Table {...postTableProps} rowKey="id">
                 <Table.Column
                     dataIndex="images"
-                    render={(value) => <Avatar size={74} src={value ? value[0].url : ""} />}
+                    render={(value) => <Avatar  shape="square"size={74} src={value ? value[0].url : ""} />}
                     width={105}
                 />
                 <Table.Column

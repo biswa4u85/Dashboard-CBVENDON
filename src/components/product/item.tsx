@@ -99,6 +99,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({
                 <div style={{ textAlign: "center" }}>
                     <Avatar
                         size={128}
+                        shape="square"
                         src={item.images ? item.images[0].url : ''}
                         alt={item.title}
                     />

@@ -61,7 +61,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 <Descriptions.Item label="Order Number">{order.id}</Descriptions.Item>
                 <Descriptions.Item label="Service Type">{order.serviceType}</Descriptions.Item>
                 <Descriptions.Item label="Bags">{order.bags}</Descriptions.Item>
-                <Descriptions.Item label="Is Paid">{order.isPaid ? 'Done' : 'Not Done'}</Descriptions.Item>
+                <Descriptions.Item label="Paid">{order.isPaid ? 'Done' : 'Not Done'}</Descriptions.Item>
                 <Descriptions.Item label="Logistic Company Provider">{order.logisticCompanyProvider}</Descriptions.Item>
                 <Descriptions.Item label="Logistic Confirmation Number">{order.logisticConfirmationNumber}</Descriptions.Item>
                 <Descriptions.Item label="Payment Confirmation">{order.paymentConfirmation}</Descriptions.Item>

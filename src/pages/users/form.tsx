@@ -5,13 +5,25 @@ import {
     Input,
     getValueFromEvent,
     Row,
+    InputNumber,
     Col,
     Radio,
 } from "@pankod/refine-antd";
 import { Files, Address } from 'components'
+const { Option } = Select;
 
 export const FormList = ({ formProps }: any) => {
     const t = useTranslate();
+
+    const prefixSelector = (
+        <Form.Item name="phoneCode" noStyle>
+            <Select style={{ width: 80 }}>
+                <Option value="+91">+91</Option>
+                <Option value="+01">+01</Option>
+            </Select>
+        </Form.Item>
+    );
+
     return <>
         <Row gutter={20}>
             <Col xs={24} lg={8}>
@@ -110,7 +122,7 @@ export const FormList = ({ formProps }: any) => {
                                 },
                             ]}
                         >
-                            <Input type="number" />
+                            <InputNumber style={{ width: 370 }} addonBefore={prefixSelector} type="number" />
                         </Form.Item>
 
                     </Col>

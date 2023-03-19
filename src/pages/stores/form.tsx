@@ -6,7 +6,7 @@ import {
     Row,
     useSelect,
     Select,
-    useTable,
+    InputNumber,
     Col,
     Radio,
     InputProps,
@@ -14,6 +14,7 @@ import {
 import { Files, Address, VenderTimes } from 'components'
 import { IProduct } from "interfaces";
 import InputMask from "react-input-mask";
+const { Option } = Select;
 
 export const FormList = ({ formProps, type }: any) => {
     const t = useTranslate();
@@ -28,6 +29,15 @@ export const FormList = ({ formProps, type }: any) => {
             },
         ],
     });
+
+    const prefixSelector = (
+        <Form.Item name="phoneCode" noStyle>
+            <Select style={{ width: 80 }}>
+                <Option value="+91">+91</Option>
+                <Option value="+01">+01</Option>
+            </Select>
+        </Form.Item>
+    );
 
     return <Row gutter={[64, 0]} wrap>
         <Col xs={24} lg={6}>
@@ -94,12 +104,7 @@ export const FormList = ({ formProps, type }: any) => {
                     },
                 ]}
             >
-                <InputMask mask="(99) 99999 99999">
-                    {/* 
-                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                                    // @ts-ignore */}
-                    {(props: InputProps) => <Input {...props} />}
-                </InputMask>
+                <InputNumber style={{ width: 340 }} addonBefore={prefixSelector} type="number" />
             </Form.Item>
             <Form.Item
                 label={"Status"}
@@ -172,12 +177,7 @@ export const FormList = ({ formProps, type }: any) => {
                     },
                 ]}
             >
-                <InputMask mask="(99) 99999 99999">
-                    {/* 
-                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                                    // @ts-ignore */}
-                    {(props: InputProps) => <Input {...props} />}
-                </InputMask>
+                <InputNumber style={{ width: 340 }} addonBefore={prefixSelector} type="number" />
             </Form.Item>
         </Col>
         <Col xs={24} lg={8}>

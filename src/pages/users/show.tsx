@@ -13,8 +13,6 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
     const { data } = queryResult;
     const user: any = data?.data ? data?.data : {};
 
-    console.log(user)
-
     return (
         <List
             title={"User Details"}
@@ -26,7 +24,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 <Descriptions.Item label="User ID">{user.id}</Descriptions.Item>
                 <Descriptions.Item label="Full Name">{user.title}</Descriptions.Item>
                 <Descriptions.Item label="Email">{user.email}</Descriptions.Item>
-                <Descriptions.Item label="Phone">{user.phone}</Descriptions.Item>
+                <Descriptions.Item label="Phone">{user.phoneCode} {user.phone}</Descriptions.Item>
                 <Descriptions.Item label="Gender">{user.gender}</Descriptions.Item>
                 <Descriptions.Item label="Status">{user.isActive ? 'Active' : 'Inactive'}</Descriptions.Item>
                 <Descriptions.Item><Avatar

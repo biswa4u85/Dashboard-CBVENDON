@@ -110,7 +110,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                             key="avatar"
                             dataIndex={["avatar"]}
                             title={t("users.fields.avatar.label")}
-                            render={(value) => <Avatar src={value ? value[0].url : ''} />}
+                            render={(value) => <Avatar  shape="square"src={value ? value[0].url : ''} />}
                         />
                         <Table.Column
                             key="title"

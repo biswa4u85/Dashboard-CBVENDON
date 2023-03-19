@@ -300,7 +300,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                 </Col>
                 <Col xl={24} md={8} sm={12} xs={24}>
                     <Form.Item
-                        label={'IsPaid'}
+                        label={'Paid'}
                         name="isPaid"
                     >
                         <Select
