@@ -110,7 +110,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const Actions: React.FC = () => (
         <Space>
             <CreateButton />
-            <ExportButton onClick={triggerExport} loading={isLoading} />
+            {/* <ExportButton onClick={triggerExport} loading={isLoading} /> */}
         </Space>
     );
 
@@ -168,7 +168,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             dataIndex="servicePrice"
                             title={'Service Price'}
                             render={(value) => {
-                                return `₹${value}`
+                                return `$${value}`
                             }}
                         />
                         <Table.Column
@@ -294,7 +294,6 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                             allowClear
                             placeholder={t("orders.filter.status.placeholder")}
                         >
-
                         </Select>
                     </Form.Item>
                 </Col>

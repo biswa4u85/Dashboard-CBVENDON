@@ -142,7 +142,7 @@ export const FormList = ({ formProps, type }: any) => {
                     },
                 ]}
             >
-                <Input prefix={"₹"} type="number" />
+                <Input prefix={"$"} type="number" />
             </Form.Item>
             <Form.Item
                 label={'Number of Bags'}

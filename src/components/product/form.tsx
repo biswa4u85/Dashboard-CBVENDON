@@ -75,7 +75,7 @@ export const FormList = ({ formProps }: any) => {
             ]}
         >
             <InputNumber
-                formatter={(value) => `₹ ${value}`}
+                formatter={(value) => `$ ${value}`}
                 style={{ width: "150px" }}
             />
         </Form.Item>

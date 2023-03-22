@@ -22,27 +22,9 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const order: any = data?.data ? data?.data : {};
     let orderStatusArray = order.orderStatusArray ? order.orderStatusArray.map((item: any) => { return { ...item, label: moment(item.label).format('MMMM Do YYYY, h:mm:ss a') } }) : []
 
-    const exportData = useExport<IOrder>({
-        pageSize: 50,
-        maxItemCount: 50,
-        mapData: (item: any) => {
-            return {
-                id: item.id,
-                paymentConfirmation: item.paymentConfirmation,
-                serviceType: item.serviceType,
-                products: item.products,
-                servicePrice: item.servicePrice,
-                employeeID: item.employeeID,
-                store: item.store,
-                bags: item.bags,
-                logisticCompanyProvider: item.logisticCompanyProvider,
-                isPaid: item.isPaid,
-                logisticConfirmationNumber: item.logisticConfirmationNumber,
-                orderStatus: item.orderStatus
-            };
-        },
-    });
+    const exportData = () => {
 
+    }
 
     if (isLoading)
         return <Loader />
@@ -53,7 +35,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
             headerButtons={
                 <Space>
                     <Button onClick={() => history.back()}>Back</Button>
-                    {/* <ExportButton onClick={exportData.triggerExport} loading={exportData.isLoading} /> */}
+                    <ExportButton onClick={() => exportData()} />
                 </Space>
             }
         >

@@ -121,18 +121,16 @@ export const ProductItem: React.FC<ProductItemProps> = ({
                 >
                     {item.description}
                 </Paragraph>
-                <NumberField
+                <Paragraph
+                    ellipsis={{ rows: 3, tooltip: true }}
                     style={{
                         fontSize: "24px",
                         fontWeight: 500,
                         marginBottom: "8px",
                     }}
-                    options={{
-                        currency: "INR",
-                        style: "currency",
-                    }}
-                    value={item.price}
-                />
+                >
+                    ${item.price}
+                </Paragraph>
                 {updateStock && (
                     <div id="stock-number">
                         <InputNumber
