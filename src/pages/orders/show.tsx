@@ -3,6 +3,7 @@ import {
     useExport,
     IResourceComponentsProps,
 } from "@pankod/refine-core";
+import { collection } from "firebase/firestore";
 import moment from "moment";
 import {
     List,
@@ -13,7 +14,7 @@ import {
 import { QRCodes } from 'components'
 import { OrderStatus, Loader } from "components";
 import { IOrder } from "interfaces";
-
+import { Document, Page } from 'react-pdf';
 
 
 export const OrderShow: React.FC<IResourceComponentsProps> = () => {
@@ -23,7 +24,13 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     let orderStatusArray = order.orderStatusArray ? order.orderStatusArray.map((item: any) => { return { ...item, label: moment(item.label).format('MMMM Do YYYY, h:mm:ss a') } }) : []
 
     const exportData = () => {
-
+        collection('mail').add({
+            to: 'someone@example.com',
+            message: {
+                subject: 'Hello from Firebase!',
+                html: 'This is an <code>HTML</code> email body.',
+            },
+        })
     }
 
     if (isLoading)
