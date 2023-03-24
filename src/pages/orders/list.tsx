@@ -244,7 +244,6 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
     props,
 ) => {
     const t = useTranslate();
-
     const { formProps, filters } = props;
     const { selectProps: storeSelectProps } = useSelect<IStore>({
         resource: "stores",

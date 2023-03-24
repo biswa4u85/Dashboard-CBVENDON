@@ -34,7 +34,7 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
                 <Row gutter={[64, 0]} wrap>
                     <Col xs={24} lg={8}>
                         <Form.Item
-                            label={t("stores.fields.title")}
+                            label={'Category Name'}
                             name="title"
                             rules={[
                                 {
