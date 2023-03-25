@@ -79,9 +79,10 @@ export const dataProvider: any = {
                 for (let item of sort) {
                     queryConstraints.push(orderBy(item.field, item.order))
                 }
-            } else {
-                queryConstraints.push(orderBy('updateAt', 'desc'))
-            }
+            } 
+            // else {
+            //     queryConstraints.push(orderBy('updateAt', 'desc'))
+            // }
             let q = query(collection(db, resource), ...queryConstraints)
             const querySnapshot = await getDocs(q);
             const collections: any = [];
