@@ -6,6 +6,6 @@ type QRCodeTimesProps = {
 };
 export const QRCodes: React.FC<QRCodeTimesProps> = ({ text, size = 200 }) => {
     return (
-        <QRCode size={size} value={`https://dashboard-cbvendon-git-main-biswa4u85.vercel.app/orders/show/${text}`} />
+        <QRCode size={size} value={text} />
     );
 };

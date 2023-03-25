@@ -92,6 +92,7 @@ const App: React.FC = () => {
                         show: OrderShow,
                         create: OrderCreate,
                         edit: OrderEdit,
+                        canDelete: true,
                         icon: <Icons.ShoppingOutlined />,
                     },
                     {

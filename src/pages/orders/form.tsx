@@ -12,6 +12,7 @@ import {
 } from "@pankod/refine-antd";
 import { IUser, IStore, IProduct } from "interfaces";
 import { QRCodes, Dates } from 'components'
+import common from "common";
 
 export const FormList = ({ formProps, type }: any) => {
 
@@ -39,20 +40,21 @@ export const FormList = ({ formProps, type }: any) => {
     useEffect(() => {
         onSearch(formProps.form.getFieldsValue().store)
     }, [formProps.form.getFieldsValue().store])
-
+   
     return <Row gutter={[64, 0]} wrap>
         <Col xs={24} lg={6}>
             <Form.Item
                 label={t("stores.fields.user")}
                 name="user"
                 rules={[
-                    {
-                        required: true,
-                        message: 'User is required!'
-                    },
+                    // {
+                    //     required: true,
+                    //     message: 'User is required!'
+                    // },
                 ]}
             >
                 <Select>
+                    <option value={''}>Select User</option>
                     {users?.options?.map((option: any) => (
                         <option key={option.value} value={option.value}>
                             {option.label}
@@ -142,7 +144,7 @@ export const FormList = ({ formProps, type }: any) => {
                     },
                 ]}
             >
-                <Input prefix={"$"} type="number" />
+                <Input prefix={common.currency} type="number" />
             </Form.Item>
             <Form.Item
                 label={'Number of Bags'}

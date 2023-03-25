@@ -7,6 +7,7 @@ import {
     HttpError,
     getDefaultFilter,
 } from "@pankod/refine-core";
+import common from "common";
 
 import {
     List,
@@ -168,7 +169,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             dataIndex="servicePrice"
                             title={'Service Price'}
                             render={(value) => {
-                                return `$${value}`
+                                return `${common.currency}${value}`
                             }}
                         />
                         <Table.Column

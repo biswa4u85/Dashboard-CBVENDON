@@ -11,7 +11,7 @@ import {
     NumberField,
     Typography,
 } from "@pankod/refine-antd";
-
+import common from "common";
 const { Text, Paragraph } = Typography;
 const { CloseCircleOutlined, FormOutlined } = Icons;
 
@@ -129,7 +129,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({
                         marginBottom: "8px",
                     }}
                 >
-                    ${item.price}
+                    {common.currency}{item.price}
                 </Paragraph>
                 {updateStock && (
                     <div id="stock-number">

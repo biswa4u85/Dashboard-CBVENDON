@@ -10,7 +10,7 @@ import {
 } from "@pankod/refine-antd";
 import { ICategory, IStore } from "interfaces";
 import { Files } from 'components'
-
+import common from "common";
 
 export const FormList = ({ formProps }: any) => {
     const t = useTranslate();
@@ -75,7 +75,7 @@ export const FormList = ({ formProps }: any) => {
             ]}
         >
             <InputNumber
-                formatter={(value) => `$ ${value}`}
+                formatter={(value) => `${common.currency} ${value}`}
                 style={{ width: "150px" }}
             />
         </Form.Item>
