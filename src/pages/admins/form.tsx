@@ -98,7 +98,7 @@ export const FormList = ({ formProps }: any) => {
                                 },
                             ]}
                         >
-                            <Input />
+                            <Input readOnly />
                         </Form.Item>
                         <Form.Item
                             label={"Phone"}
