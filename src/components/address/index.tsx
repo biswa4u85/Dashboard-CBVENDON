@@ -162,7 +162,7 @@ export const Address: React.FC<AddressProps> = ({ formProps, name }) => {
             <Input placeholder="City" value={address['city']} onChange={(obj) => onChange('city', obj.target.value)} />
             <Input placeholder="State" value={address['state']} onChange={(obj) => onChange('state', obj.target.value)} />
             <Input placeholder="Country" value={address['country']} onChange={(obj) => onChange('country', obj.target.value)} />
-            <Input placeholder="Code" type="number" value={address['postal_code']} onChange={(obj) => onChange('postal_code', obj.target.value)} />
+            <Input placeholder="Code" value={address['postal_code']} onChange={(obj) => onChange('postal_code', obj.target.value)} />
         </Space>
 
     );

@@ -13,7 +13,6 @@ import {
 } from "@pankod/refine-antd";
 import { Files, Address, VenderTimes } from 'components'
 import { IProduct } from "interfaces";
-import InputMask from "react-input-mask";
 const { Option } = Select;
 
 export const FormList = ({ formProps, type }: any) => {
@@ -209,7 +208,7 @@ export const FormList = ({ formProps, type }: any) => {
                     },
                 ]}
             >
-                <Files folder={'storeImages'} lable={'Store Image'} name="images" formProps={formProps} />
+                <Files count={5} folder={'storeImages'} lable={'Store Image'} name="images" formProps={formProps} />
             </Form.Item>
         </Col>
         {type === "edit" && (<Col xs={24} lg={12}>

@@ -84,6 +84,8 @@ export const Files: React.FC<FilesProps> = ({ formProps, name, folder, count = 1
         }
     }
 
+    console.log(fileList)
+
     return (
         <>
             <Text
@@ -95,6 +97,18 @@ export const Files: React.FC<FilesProps> = ({ formProps, name, folder, count = 1
                 }}>
                 {lable}
             </Text>
+            {count > 1 && (<Space wrap={true}>{fileList.map((item: any, key: any) =>
+                <Avatar
+                    key={key}
+                    shape="square"
+                    style={{
+                        height: 80,
+                        width: 83,
+                        border: "1px dashed #d9d9d9",
+                        marginBottom: 5
+                    }}
+                    src={item.url} alt=""
+                />)}</Space>)}
             <Upload.Dragger
                 name="file"
                 onChange={onFileChange}
@@ -104,15 +118,25 @@ export const Files: React.FC<FilesProps> = ({ formProps, name, folder, count = 1
                 maxCount={count}
             >
                 <Space direction="vertical" size={2}>
-                    {loaders ? <Loader /> :
-                        <Avatar
+                    {loaders ? <Loader /> : <> {
+                        (count == 1) ? <Avatar
                             shape="square"
                             style={{
                                 width: 200,
                                 height: 150,
                             }}
                             src={(fileList && fileList[0]) ? fileList[0]['url'] : "/images/user-default-img.png"} alt=""
-                        />}
+                        /> :
+                            <Avatar
+                                shape="square"
+                                style={{
+                                    width: 200,
+                                    height: 150,
+                                }}
+                                src={"/images/user-default-img.png"} alt=""
+                            />
+                    }</>
+                    }
                     {!(fileList && fileList[0]) && (<Text style={{ fontSize: "12px" }}>
                         Upload Image
                     </Text>)}

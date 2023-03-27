@@ -317,7 +317,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                         name="status"
                     >
                         <Select
-                            options={[{ label: 'Active', value: 'true' }, { label: 'Inactive', value: 'false' }]}
+                            options={[{ label: 'Pending', value: 'true' }, { label: 'Completed', value: 'false' }]}
                             allowClear
                             placeholder={'Status'}
                         >
