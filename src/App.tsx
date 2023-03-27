@@ -72,8 +72,7 @@ const App: React.FC = () => {
                         rememberMe={false}
                         formProps={{
                             initialValues: {
-                                email: "biswa4u85@gmail.com",
-                                password: "demo123",
+                               
                             },
                         }}
                     />
