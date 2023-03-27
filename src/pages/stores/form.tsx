@@ -216,10 +216,10 @@ export const FormList = ({ formProps, type }: any) => {
                 label={'Best Seller Items'}
                 name={"bestSellerItems"}
                 rules={[
-                    {
-                        required: true,
-                        message: 'Products are required!'
-                    },
+                    // {
+                    //     required: true,
+                    //     message: 'Products are required!'
+                    // },
                     {
                         validator: (rule, value, callback) => {
                             if (value) {
