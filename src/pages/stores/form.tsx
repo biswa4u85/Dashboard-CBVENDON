@@ -9,7 +9,7 @@ import {
     InputNumber,
     Col,
     Radio,
-    InputProps,
+    TextField,
 } from "@pankod/refine-antd";
 import { Files, Address, VenderTimes } from 'components'
 import { IProduct } from "interfaces";
@@ -67,7 +67,7 @@ export const FormList = ({ formProps, type }: any) => {
             >
                 <Input />
             </Form.Item>
-            <Form.Item
+            {type === "edit" ? <Form.Item
                 label={t("stores.fields.email")}
                 name="email"
                 rules={[
@@ -78,8 +78,21 @@ export const FormList = ({ formProps, type }: any) => {
                     },
                 ]}
             >
-                <Input readOnly={type === "create" ? false : true} />
-            </Form.Item>
+                <TextField value={''} />
+            </Form.Item> : <Form.Item
+                label={t("stores.fields.email")}
+                name="email"
+                rules={[
+                    {
+                        required: true,
+                        type: "email",
+                        message: 'Management Email is required!'
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>}
+
             {type === "create" && (
                 <Form.Item
                     label={'Password'}
