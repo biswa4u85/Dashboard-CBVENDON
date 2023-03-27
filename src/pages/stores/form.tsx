@@ -78,7 +78,7 @@ export const FormList = ({ formProps, type }: any) => {
                     },
                 ]}
             >
-                <Input readOnly />
+                <Input readOnly={type === "create" ? true : false} />
             </Form.Item>
             {type === "create" && (
                 <Form.Item
@@ -216,10 +216,10 @@ export const FormList = ({ formProps, type }: any) => {
                 label={'Best Seller Items'}
                 name={"bestSellerItems"}
                 rules={[
-                    // {
-                    //     required: true,
-                    //     message: 'Products are required!'
-                    // },
+                    {
+                        required: true,
+                        message: 'Products are required!'
+                    },
                     {
                         validator: (rule, value, callback) => {
                             if (value) {
