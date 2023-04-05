@@ -70,9 +70,10 @@ const App: React.FC = () => {
                     <AuthPage
                         type="login"
                         rememberMe={false}
+                        registerLink={false}
                         formProps={{
                             initialValues: {
-                               
+
                             },
                         }}
                     />
@@ -95,36 +96,35 @@ const App: React.FC = () => {
                         icon: <Icons.ShoppingOutlined />,
                     },
                     {
-                        name: "admins",
-                        edit: AdminEdit,
-                        icon: <Icons.UsergroupAddOutlined />,
-                    },
-                    {
-                        name: "users",
-                        list: UserList,
-                        create: UserCreate,
-                        edit: UserEdit,
-                        show: UserShow,
-                        icon: <Icons.UsergroupAddOutlined />,
-                    },
-                    {
-                        name: "products",
-                        list: ProductList,
-                        icon: <PizzaIcon />,
-                    },
-
-                    {
                         name: "stores",
                         list: StoreList,
                         edit: StoreEdit,
                         create: StoreCreate,
                         icon: <Icons.ShopOutlined />,
                     },
-                    {
-                        name: "categories",
-                        list: CategoryList,
-                        create: CategoryCreate,
-                    },
+                    // {
+                    //     name: "admins",
+                    //     edit: AdminEdit,
+                    //     icon: <Icons.UsergroupAddOutlined />,
+                    // },
+                    // {
+                    //     name: "users",
+                    //     list: UserList,
+                    //     create: UserCreate,
+                    //     edit: UserEdit,
+                    //     show: UserShow,
+                    //     icon: <Icons.UsergroupAddOutlined />,
+                    // },
+                    // {
+                    //     name: "products",
+                    //     list: ProductList,
+                    //     icon: <PizzaIcon />,
+                    // },
+                    // {
+                    //     name: "categories",
+                    //     list: CategoryList,
+                    //     create: CategoryCreate,
+                    // },
                 ]}
                 notificationProvider={notificationProvider}
                 catchAll={<ErrorComponent />}

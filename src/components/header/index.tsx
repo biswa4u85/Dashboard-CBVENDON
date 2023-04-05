@@ -68,7 +68,7 @@ export const Header: React.FC = () => {
         value: title,
         label: (
             <Link to={link} style={{ display: "flex", alignItems: "center" }}>
-                <Avatar  shape="square"size={64} src={imageUrl} style={{ minWidth: "64px" }} />
+                <Avatar shape="square" size={64} src={imageUrl} style={{ minWidth: "64px" }} />
                 <Text style={{ marginLeft: "16px" }}>{title}</Text>
             </Link>
         ),
@@ -167,13 +167,13 @@ export const Header: React.FC = () => {
                         >
                             {users?.fullName}
                         </Text>
-                        <Link to={`/admins/edit/${users?.id}`}>
+                        {/* <Link to={`/admins/edit/${users?.id}`}>
                             <Avatar
                                 size="large"
                                 src={users?.avatar ? users?.avatar[0]?.url : ''}
                                 alt={users?.fullName}
                             />
-                        </Link>
+                        </Link> */}
                     </Space>
                 </Col>
             </Row>
