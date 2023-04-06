@@ -6,7 +6,7 @@ import {
     Row,
     DatePicker,
     Select,
-    Image,
+    InputNumber,
     Col,
     Radio,
 } from "@pankod/refine-antd";
@@ -40,7 +40,7 @@ export const FormList = ({ formProps, type }: any) => {
     useEffect(() => {
         onSearch(formProps.form.getFieldsValue().store)
     }, [formProps.form.getFieldsValue().store])
-   
+
     return <Row gutter={[64, 0]} wrap>
         <Col xs={24} lg={6}>
             <Form.Item
@@ -125,7 +125,16 @@ export const FormList = ({ formProps, type }: any) => {
                     },
                 ]}
             >
-                <Input type="number" />
+                <InputNumber style={{ width: "100%" }} min={1}
+                    disabled={formProps?.initialValues?.isPaid}
+                    formatter={(value: any) => {
+                        if (value === undefined) {
+                            return '';
+                        } else {
+                            return value.replace('.', '')
+                        }
+                    }}
+                    type="number" />
             </Form.Item>
             <Form.Item
                 label={'Employee ID'}
