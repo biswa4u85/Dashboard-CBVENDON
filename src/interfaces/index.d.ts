@@ -107,6 +107,7 @@ export interface IOrderFilterVariables {
     store?: string;
     isPaid?:boolean;
     orderStatus?:string;
+    order?: string;
     user?: string;
     createdAt?: [Dayjs, Dayjs];
     status?: string;

@@ -83,7 +83,6 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 <Descriptions.Item label="Logistic Confirmation Number">{order.logisticConfirmationNumber}</Descriptions.Item>
                 <Descriptions.Item label="Payment Confirmation">{order.paymentConfirmation}</Descriptions.Item>
                 <Descriptions.Item label="Service Price">{common.currency}{order.servicePrice}</Descriptions.Item>
-                <Descriptions.Item label="Status">{order.status ? 'Pending' : 'Completed'}</Descriptions.Item>
                 <Descriptions.Item label="QR Code">
                     <QRCodes text={JSON.stringify({
                         id: String(order.id),

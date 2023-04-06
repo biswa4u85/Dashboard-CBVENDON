@@ -80,38 +80,6 @@ export const FormList = ({ formProps, type }: any) => {
                     ))}
                 </Select>
             </Form.Item>
-            {/* {formProps.form.getFieldsValue().store && (<Form.Item */}
-            <Form.Item
-                label={'Products'}
-                name={"products"}
-                rules={[
-                    {
-                        required: true,
-                        message: 'Products are required!'
-                    },
-                ]}
-            >
-                <Select
-                    mode="multiple"
-                    allowClear>
-                    {options?.map((option: any) => (
-                        <option key={option.value} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </Select>
-            </Form.Item>
-            <Form.Item
-                label={'Status'}
-                name="status"
-            >
-                <Radio.Group>
-                    <Radio value={true}>{t("status.enable")}</Radio>
-                    <Radio value={false}>
-                        {t("status.disable")}
-                    </Radio>
-                </Radio.Group>
-            </Form.Item>
             {type == 'edit' && (<Form.Item label={'QR Code'}>
                 <QRCodes text={formProps?.initialValues ? formProps?.initialValues['id'] : ''} size={150} />
             </Form.Item>)}
@@ -127,7 +95,7 @@ export const FormList = ({ formProps, type }: any) => {
                     },
                 ]}
             >
-                <Select options={[{ label: 'Normal', value: 'normal' }, { label: 'Express', value: 'express' }, { label: 'Day Pass', value: 'dayPass' }]} />
+                <Select options={[{ label: 'Normal', value: 'normal' }, { label: 'Express', value: 'express' }]} />
             </Form.Item>
             <Form.Item
                 style={{ display: 'none' }}
@@ -225,7 +193,7 @@ export const FormList = ({ formProps, type }: any) => {
 
                 ]}
             >
-                <Input type="number" />
+                <Input />
             </Form.Item>
             <Form.Item
                 label={'Logistic Company Provider'}

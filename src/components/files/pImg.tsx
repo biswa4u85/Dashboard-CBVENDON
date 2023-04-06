@@ -18,14 +18,14 @@ type FilesProps = {
     folder: string;
 };
 
-export const Files: React.FC<FilesProps> = ({ formProps, name, folder, count = 1, lable }) => {
+export const PImg: React.FC<FilesProps> = ({ formProps, name, folder, count = 1, lable }) => {
 
     const [fileList, setFileList] = useState<any>([])
     const [loaders, setLoaders] = useState<any>(false)
 
     useEffect(() => {
-        if (formProps?.initialValues && formProps?.initialValues[name]) {
-            setFileList(formProps?.initialValues[name])
+        if (formProps.form.getFieldValue('products') && formProps.form.getFieldValue('products')[name] && formProps.form.getFieldValue('products')[name].image) {
+            setFileList(formProps.form.getFieldValue('products')[name].image)
         }
     }, [formProps.initialValues])
 
@@ -76,37 +76,18 @@ export const Files: React.FC<FilesProps> = ({ formProps, name, folder, count = 1
                 url: file.file.response
             })
         }
+        let products = formProps.form.getFieldValue('products') 
+        products[name].image = tempFiles
         if (file.file.response) {
             (formProps as any).form.setFieldsValue({
-                [name]: tempFiles
+                ['products']: products
             })
             setFileList(tempFiles)
         }
     }
 
     return (
-        <>
-            <Text
-                className="form-item-required"
-                style={{
-                    fontSize: "15px",
-                    marginBottom: 10,
-                    display: 'block'
-                }}>
-                {lable}
-            </Text>
-            {count > 1 && (<Space wrap={true}>{fileList.map((item: any, key: any) =>
-                <Avatar
-                    key={key}
-                    shape="square"
-                    style={{
-                        height: 80,
-                        width: 83,
-                        border: "1px dashed #d9d9d9",
-                        marginBottom: 5
-                    }}
-                    src={item.url} alt=""
-                />)}</Space>)}
+        <div style={{ width: 180 }}>
             <Upload.Dragger
                 name="file"
                 onChange={onFileChange}
@@ -115,21 +96,21 @@ export const Files: React.FC<FilesProps> = ({ formProps, name, folder, count = 1
                 showUploadList={false}
                 maxCount={count}
             >
-                <Space direction="vertical" size={2}>
+                <Space direction="vertical">
                     {loaders ? <Loader /> : <> {
                         (count == 1) ? <Avatar
                             shape="square"
                             style={{
-                                width: 200,
-                                height: 150,
+                                width: 100,
+                                height: 100,
                             }}
                             src={(fileList && fileList[0]) ? fileList[0]['url'] : "/images/user-default-img.png"} alt=""
                         /> :
                             <Avatar
                                 shape="square"
                                 style={{
-                                    width: 200,
-                                    height: 150,
+                                    width: 100,
+                                    height: 100,
                                 }}
                                 src={"/images/user-default-img.png"} alt=""
                             />
@@ -141,6 +122,6 @@ export const Files: React.FC<FilesProps> = ({ formProps, name, folder, count = 1
                 </Space>
 
             </Upload.Dragger>
-        </>
+        </div>
     );
 };

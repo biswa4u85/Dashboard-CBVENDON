@@ -49,16 +49,11 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         resource: 'orders',
         onSearch: (params) => {
             const filters: any = [];
-            const { orderStatus, isPaid, status, store, user } = params;
+            const { orderStatus, isPaid, order, store, user } = params;
             filters.push({
                 field: "orderStatus",
-                operator: "eq",
-                value: orderStatus,
-            });
-            filters.push({
-                field: "status",
-                operator: "boolean",
-                value: status,
+                operator: "in",
+                value: orderStatus ? orderStatus == 'Not Delivered' ? ['Out for Delivery', 'Order Packaged', 'Order Received'] : [orderStatus] : '',
             });
             filters.push({
                 field: "isPaid",
@@ -66,6 +61,11 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 value: isPaid,
             });
 
+            filters.push({
+                field: "id",
+                operator: "id",
+                value: order,
+            });
             filters.push({
                 field: "store",
                 operator: "eq",
@@ -246,6 +246,11 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
 ) => {
     const t = useTranslate();
     const { formProps, filters } = props;
+    const { selectProps: orderSelectProps } = useSelect<IStore>({
+        resource: "orders",
+        optionLabel: "id",
+        defaultValue: getDefaultFilter("order.id", filters),
+    });
     const { selectProps: storeSelectProps } = useSelect<IStore>({
         resource: "stores",
         optionLabel: "id",
@@ -261,10 +266,8 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
     const createdAt = useMemo(() => {
         const start = getDefaultFilter("createdAt", filters, "gte");
         const end = getDefaultFilter("createdAt", filters, "lte");
-
         const startFrom = dayjs(start);
         const endAt = dayjs(end);
-
         if (start && end) {
             return [startFrom, endAt];
         }
@@ -290,7 +293,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                         name="orderStatus"
                     >
                         <Select
-                            options={[{ label: 'Delivered', value: 'Delivered' }, { label: 'Out for Delivery', value: 'Out for Delivery' }, { label: 'Order Packaged', value: 'Order Packaged' }, { label: 'Order Received', value: 'Order Received' }]}
+                            options={[{ label: 'Delivered', value: 'Delivered' }, { label: 'Not Delivered', value: 'Not Delivered' }, { label: 'Out for Delivery', value: 'Out for Delivery' }, { label: 'Order Packaged', value: 'Order Packaged' }, { label: 'Order Received', value: 'Order Received' }]}
                             allowClear
                             placeholder={t("orders.filter.status.placeholder")}
                         >
@@ -313,16 +316,14 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                 </Col>
                 <Col xl={24} md={8} sm={12} xs={24}>
                     <Form.Item
-                        label={'Status'}
-                        name="status"
+                        label={'Order'}
+                        name="order"
                     >
                         <Select
-                            options={[{ label: 'Pending', value: 'true' }, { label: 'Completed', value: 'false' }]}
+                            {...orderSelectProps}
                             allowClear
-                            placeholder={'Status'}
-                        >
-
-                        </Select>
+                            placeholder={'Search Orders'}
+                        />
                     </Form.Item>
                 </Col>
                 <Col xl={24} md={8} sm={12} xs={24}>

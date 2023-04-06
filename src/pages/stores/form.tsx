@@ -5,21 +5,26 @@ import {
     getValueFromEvent,
     Row,
     useSelect,
+    Space,
     Select,
     InputNumber,
+    Button,
     Col,
     Radio,
     TextField,
 } from "@pankod/refine-antd";
-import { Files, Address, VenderTimes } from 'components'
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { Files, PImg, Address, VenderTimes } from 'components'
 import { IProduct } from "interfaces";
 const { Option } = Select;
+const { TextArea } = Input;
+
 
 export const FormList = ({ formProps, type }: any) => {
     const t = useTranslate();
 
     const { selectProps: productSelectProps } = useSelect<IProduct>({
-        resource: "products",
+        resource: "categories",
         filters: [
             // {
             //     field: "store.id",
@@ -52,6 +57,21 @@ export const FormList = ({ formProps, type }: any) => {
                 ]}
             >
                 <Files folder={'stores'} name="avatar" lable={'Store Logo'} formProps={formProps} />
+            </Form.Item>
+            <Form.Item
+                label={'Categories'}
+                name={"categories"}
+                rules={[
+                    {
+                        required: true,
+                        message: 'Categories are required!'
+                    }
+                ]}
+            >
+                <Select {...productSelectProps}
+                    mode="multiple"
+                    allowClear
+                />
             </Form.Item>
         </Col>
         <Col xs={24} lg={8}>
@@ -224,15 +244,14 @@ export const FormList = ({ formProps, type }: any) => {
                 <Files count={5} folder={'storeImages'} lable={'Store Image'} name="images" formProps={formProps} />
             </Form.Item>
         </Col>
-        {/* {type === "edit" && (<Col xs={24} lg={12}> */}
         <Col xs={24} lg={12}>
             <Form.Item
                 label={'Best Seller Items'}
-                name={"bestSellerItems"}
+                name="products"
                 rules={[
                     {
                         required: true,
-                        message: 'Products are required!'
+                        message: 'Items are required!'
                     },
                     {
                         validator: (rule, value, callback) => {
@@ -248,10 +267,55 @@ export const FormList = ({ formProps, type }: any) => {
                     }
                 ]}
             >
-                <Select {...productSelectProps}
-                    mode="multiple"
-                    allowClear
-                />
+                <Form.List name="products"
+                >
+                    {(fields, { add, remove }) => (
+                        <>
+                            {fields.map(({ key, name, ...restField }) => (
+                                <Space
+                                    key={key}
+                                    style={{
+                                        display: 'flex',
+                                        marginBottom: 8,
+                                    }}
+                                    align="baseline"
+                                >
+                                    <Form.Item
+                                        {...restField}
+                                        name={[name, 'image']}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Missing Image',
+                                            },
+                                        ]}
+                                    >
+                                        <PImg folder={'products'} name={name} lable={'Product Image'} formProps={formProps} />
+                                    </Form.Item>
+                                    <Form.Item
+                                        {...restField}
+                                        name={[name, 'description']}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Missing Description',
+                                            },
+                                        ]}
+                                    >
+                                        <TextArea style={{ height: 160 }} placeholder="Description" />
+                                    </Form.Item>
+                                    <MinusCircleOutlined onClick={() => remove(name)} />
+                                </Space>
+                            ))}
+                            {fields.length < 5 && (
+                                <Form.Item>
+                                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                                        Add New
+                                    </Button>
+                                </Form.Item>)}
+                        </>
+                    )}
+                </Form.List>
             </Form.Item>
         </Col>
         <Col xs={24} lg={12}>
