@@ -36,7 +36,7 @@ export const authProvider: AuthProvider = {
             try {
                 let user: any = await createUserWithEmailAndPassword(auth, email, password)
                 const dbRef = collection(db, 'admins');
-                addDoc(dbRef, { email, uid: user.user.uid, id: user.user.uid, type: 'admin', isActive: false })
+                addDoc(dbRef, { email, uid: user.user.uid, id: user.user.uid, type: 'admin', isActive: false, createAt:  String(new Date()), updateAt:  String(new Date()) })
                     .then(docRef => {
                         notification.success({
                             message: "Resistor",
