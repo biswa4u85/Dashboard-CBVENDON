@@ -282,18 +282,6 @@ export const FormList = ({ formProps, type }: any) => {
                                 >
                                     <Form.Item
                                         {...restField}
-                                        name={[name, 'image']}
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message: 'Missing Image',
-                                            },
-                                        ]}
-                                    >
-                                        <PImg folder={'products'} name={name} lable={'Product Image'} formProps={formProps} />
-                                    </Form.Item>
-                                    <Form.Item
-                                        {...restField}
                                         name={[name, 'description']}
                                         rules={[
                                             {
@@ -303,6 +291,18 @@ export const FormList = ({ formProps, type }: any) => {
                                         ]}
                                     >
                                         <TextArea style={{ height: 160 }} placeholder="Description" />
+                                    </Form.Item>
+                                    <Form.Item
+                                        {...restField}
+                                        name={[name, 'image']}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Missing Image',
+                                            },
+                                        ]}
+                                    >
+                                        <PImg folder={'products'} name={name} lable={'Product Image'} formProps={formProps} />
                                     </Form.Item>
                                     <MinusCircleOutlined onClick={() => remove(name)} />
                                 </Space>
