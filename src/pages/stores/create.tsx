@@ -20,7 +20,7 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                 {...formProps}
                 layout="vertical"
                 initialValues={{
-                    // isActive: true,
+                    phoneCode: "+44",
                 }}
             >
                 <FormList formProps={formProps} type="create" />
