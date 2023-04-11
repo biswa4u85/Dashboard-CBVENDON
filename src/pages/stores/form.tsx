@@ -22,7 +22,7 @@ const { TextArea } = Input;
 
 export const FormList = ({ formProps, type }: any) => {
     const t = useTranslate();
-
+    const productList = Form.useWatch("products", formProps.form);
     const { selectProps: productSelectProps } = useSelect<IProduct>({
         resource: "categories",
         filters: [
@@ -292,7 +292,7 @@ export const FormList = ({ formProps, type }: any) => {
                                     >
                                         <TextArea style={{ height: 160 }} placeholder="Description" />
                                     </Form.Item>
-                                    <Form.Item
+                                    {(productList[name] && (productList[name] as any).description) && (<Form.Item
                                         {...restField}
                                         name={[name, 'image']}
                                         rules={[
@@ -303,7 +303,7 @@ export const FormList = ({ formProps, type }: any) => {
                                         ]}
                                     >
                                         <PImg folder={'products'} name={name} lable={'Product Image'} formProps={formProps} />
-                                    </Form.Item>
+                                    </Form.Item>)}
                                     <MinusCircleOutlined onClick={() => remove(name)} />
                                 </Space>
                             ))}

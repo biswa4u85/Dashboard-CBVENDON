@@ -70,7 +70,7 @@ const App: React.FC = () => {
                     <AuthPage
                         type="login"
                         rememberMe={false}
-                        // registerLink={false}
+                        registerLink={false}
                         formProps={{
                             initialValues: {
 
