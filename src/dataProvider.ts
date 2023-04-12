@@ -12,11 +12,16 @@ export const dataProvider: any = {
                     params = { ...params, uid: user.user.uid, type: 'vendor' }
                 }
             } catch (error: any) {
-                throw new Error(JSON.stringify(error.message));
+                throw new Error("Email already exists");
+                // throw new Error(JSON.stringify(error.message));
             }
         }
         if (resource === 'orders') {
-            params.orderStatusArray = [{ children: params.orderStatus, label: String(new Date()) }]
+            params.orderStatusArray = params.orderStatus ? [{ children: params.orderStatus, label: String(new Date()) }] : []
+            params.user = params.user ? params.user : ''
+            params.orderStatus = params.orderStatus ? params.orderStatus : ''
+            params.logisticCompanyProvider = params.logisticCompanyProvider ? params.logisticCompanyProvider : ''
+            params.logisticConfirmationNumber = params.logisticConfirmationNumber ? params.logisticConfirmationNumber : ''
         }
         params['createAt'] = String(new Date())
         params['updateAt'] = String(new Date())
@@ -98,6 +103,13 @@ export const dataProvider: any = {
                 let filterIn = filters.find((item: any) => item.operator == 'in')
                 if (filterIn && filterIn.value) {
                     let collection = collections.filter((element: any) => filterIn.value.includes(element.orderStatus))
+                    collections = collection ? collection : []
+                }
+            }
+            if (resource == 'stores') {
+                let filterIn = filters.find((item: any) => item.operator == 'in')
+                if (filterIn && filterIn.value) {
+                    let collection = collections.filter((element: any) => filterIn.value.includes(element.id))
                     collections = collection ? collection : []
                 }
             }

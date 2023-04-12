@@ -63,8 +63,8 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
             const filters: any = [];
             const { title, isActive } = params;
             filters.push({
-                field: "title",
-                operator: "eq",
+                field: "id",
+                operator: "in",
                 value: title,
             });
             filters.push({
@@ -166,7 +166,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                 <Col xs={24} xl={24} md={12}>
                     <Form.Item label={t("users.filter.search.label")} name="title">
                         <Input
-                            placeholder={"Name"}
+                            placeholder={"Id"}
                             prefix={<Icons.SearchOutlined />}
                         />
                     </Form.Item>
@@ -179,6 +179,10 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                         <Select
                             allowClear
                             placeholder={t("users.filter.isActive.placeholder")}
+                            showSearch
+                            filterOption={(input, option) =>
+                                String(option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                            }
                             options={[
                                 {
                                     label: 'Approved',
