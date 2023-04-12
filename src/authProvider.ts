@@ -20,8 +20,10 @@ export const authProvider: AuthProvider = {
             return querySnapshot.forEach((doc: any) => {
                 let userData = doc.data()
                 if (userData.isActive) {
+                    userData['id'] = doc.id
                     localStorage.setItem(TOKEN_KEY, `${user.user.accessToken}`);
                     localStorage.setItem(USERS, `${JSON.stringify(user.user)}`);
+                    localStorage.setItem(USERS_DETAILS, `${JSON.stringify(userData)}`);
                 } else {
                     throw new Error("Account Inactive");
                 }
