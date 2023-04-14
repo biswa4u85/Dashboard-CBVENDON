@@ -299,7 +299,7 @@ export const FormList = ({ formProps, type }: any) => {
                                     >
                                         <TextArea style={{ height: 160 }} placeholder="Description" />
                                     </Form.Item>
-                                    {(productList[name] && (productList[name] as any).description) && (<Form.Item
+                                    {(productList && productList[name] && (productList[name] as any).description) && (<Form.Item
                                         {...restField}
                                         name={[name, 'image']}
                                         rules={[
