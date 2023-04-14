@@ -17,9 +17,9 @@ export const dataProvider: any = {
             }
         }
         if (resource === 'orders') {
-            params.orderStatusArray = params.orderStatus ? [{ children: params.orderStatus, label: String(new Date()) }] : []
+            params.orderStatusArray = params.orderStatus ? [{ children: params.orderStatus, label: String(new Date()) }] : [{ children: 'Order Received', label: String(new Date()) }]
             params.user = params.user ? params.user : ''
-            params.orderStatus = params.orderStatus ? params.orderStatus : ''
+            params.orderStatus = params.orderStatus ? params.orderStatus : 'Order Received'
             params.logisticCompanyProvider = params.logisticCompanyProvider ? params.logisticCompanyProvider : ''
             params.logisticConfirmationNumber = params.logisticConfirmationNumber ? params.logisticConfirmationNumber : ''
         }
