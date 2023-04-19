@@ -42,7 +42,15 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const exportData = () => {
         if (order?.user) {
             const html = componentRef.current.innerHTML;
+            const opt = {
+                margin: [0.5, 0.5, 0.5, 0.5],
+                filename: 'order.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
             html2pdf()
+                .set(opt)
                 .from(html)
                 .outputPdf('datauristring')
                 .then((pdf: any) => {
@@ -55,8 +63,8 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         body: JSON.stringify({
                             "to": users?.email,
                             "subject": "Order Details",
-                            "text": `Order PDF`,
-                            "html": `<img src=${pdf} />`
+                            "text": ``,
+                            "html": `<p><a href="${`https://store-cbvendon-git-main-biswa4u85.vercel.app/orders/show/${order.id}`}">Open Order</a></p><p><a href="${pdf}">Download PDF</a></p>`
                         })
                     })
                         .then(response => response.text())

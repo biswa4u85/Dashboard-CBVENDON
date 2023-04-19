@@ -138,6 +138,10 @@ export const dataProvider: any = {
                 variables.orderStatusArray = [...variables.orderStatusArray, { children: variables.orderStatus, label: String(new Date()) }]
             }
         }
+        if (resource === 'orders') {
+            variables.logisticCompanyProvider = variables.logisticCompanyProvider ? variables.logisticCompanyProvider : ''
+            variables.logisticConfirmationNumber = variables.logisticConfirmationNumber ? variables.logisticConfirmationNumber : ''
+        }
         variables['updateAt'] = String(new Date())
         const docRef = doc(db, resource, id);
         updateDoc(docRef, variables)
