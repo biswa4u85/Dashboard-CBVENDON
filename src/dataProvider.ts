@@ -19,6 +19,7 @@ export const dataProvider: any = {
         if (resource === 'orders') {
             params.orderStatusArray = params.orderStatus ? [{ children: params.orderStatus, label: String(new Date()) }] : [{ children: 'Order Received', label: String(new Date()) }]
             params.user = params.user ? params.user : ''
+            params.employeeID = params.employeeID ? params.employeeID : ''
             params.orderStatus = params.orderStatus ? params.orderStatus : 'Order Received'
             params.logisticCompanyProvider = params.logisticCompanyProvider ? params.logisticCompanyProvider : ''
             params.logisticConfirmationNumber = params.logisticConfirmationNumber ? params.logisticConfirmationNumber : ''
@@ -139,6 +140,7 @@ export const dataProvider: any = {
             }
         }
         if (resource === 'orders') {
+            variables.employeeID = variables.employeeID ? variables.employeeID : ''
             variables.logisticCompanyProvider = variables.logisticCompanyProvider ? variables.logisticCompanyProvider : ''
             variables.logisticConfirmationNumber = variables.logisticConfirmationNumber ? variables.logisticConfirmationNumber : ''
         }
