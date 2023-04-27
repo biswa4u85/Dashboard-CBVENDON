@@ -10,6 +10,7 @@ import {
     Radio,
 } from "@pankod/refine-antd";
 import { Files, Address } from 'components'
+const handleGetValueFromEventNumber = (e: any) => Math.round(e)
 const { Option } = Select;
 
 export const FormList = ({ formProps }: any) => {
@@ -117,10 +118,10 @@ export const FormList = ({ formProps }: any) => {
                             rules={[
                                 {
                                     required: true,
-                                    pattern: new RegExp(/^[0-9]+$/),
-                                    message: 'Phone is required'
+                                    message: 'Phone is required!'
                                 },
                             ]}
+                            getValueFromEvent={handleGetValueFromEventNumber}
                         >
                             <InputNumber style={{ width: 370 }} addonBefore={prefixSelector} type="number" />
                         </Form.Item>

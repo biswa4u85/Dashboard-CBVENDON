@@ -41,7 +41,7 @@ export const authProvider: AuthProvider = {
                 addDoc(dbRef, { email, uid: user.user.uid, id: user.user.uid, type: 'admin', isActive: false, createAt:  String(new Date()), updateAt:  String(new Date()) })
                     .then(docRef => {
                         notification.success({
-                            message: "Resistor",
+                            message: "",
                             description: "Admin register successfully",
                         });
                         history.back()
