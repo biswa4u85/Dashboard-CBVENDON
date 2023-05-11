@@ -11,3 +11,4 @@ export * from "./qrCodes";
 export * from "./dates";
 export * from "./loader";
 export * from "./files/pImg";
+export * from "./invoice";

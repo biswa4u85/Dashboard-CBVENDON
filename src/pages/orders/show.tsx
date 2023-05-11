@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import {
     useShow,
@@ -14,9 +14,8 @@ import {
     notification,
     Timeline, Button, Descriptions
 } from "@pankod/refine-antd";
-import html2pdf from 'html2pdf.js';
 import { QRCodes } from 'components'
-import { OrderStatus, Loader } from "components";
+import { OrderStatus, Loader, Invoice } from "components";
 import { IOrder } from "interfaces";
 import common from "common";
 
@@ -24,15 +23,10 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IOrder>();
     const { data, isLoading } = queryResult;
     const order: any = data?.data ? data?.data : {};
+    const [openPdf, setOpenPdf] = useState(false)
     const componentRef = useRef<any>(null);
 
     let orderStatusArray = order.orderStatusArray ? order.orderStatusArray.map((item: any) => { return { ...item, label: moment(item.label).format('MMMM Do YYYY, h:mm:ss a') } }) : []
-
-    const userDetails = useOne<any>({
-        resource: "users",
-        id: order?.user,
-    });
-    const users = userDetails?.data?.data;
 
     const storeDetails = useOne<any>({
         resource: "stores",
@@ -41,72 +35,13 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const store = storeDetails?.data?.data;
 
     const exportData = () => {
-        if (order?.user) {
-            const html = componentRef.current.innerHTML;
-            const opt = {
-                margin: [0.5, 0.5, 0.5, 0.5],
-                filename: 'order.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-            };
-            html2pdf()
-                .set(opt)
-                .from(html)
-                .outputPdf('datauristring')
-                .then((pdf: any) => {
-                    const base64EncodedData = pdf.split(";base64,").pop();
-                    const arrayBuffer = Uint8Array.from(atob(base64EncodedData), c => c.charCodeAt(0));
-                    const storage = getStorage();
-                    const storageRef = ref(storage);
-                    const filePath = `invoices/order_${order.id}.pdf`;
-                    const fileRef = ref(storageRef, filePath);
-                    uploadBytes(fileRef, arrayBuffer).then((snapshot) => {
-                        getDownloadURL(fileRef).then((url) => {
-                            fetch('https://us-central1-cbuserapp.cloudfunctions.net/emailSend', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Access-Control-Allow-Origin': '*'
-                                },
-                                body: JSON.stringify({
-                                    "to": users?.email,
-                                    "subject": "Order Details",
-                                    "text": "Order",
-                                    "html": `<p><a href="${url}">Download PDF</a></p>`
-                                })
-                            })
-                                .then(response => response.text())
-                                .then(data => notification.success({
-                                    message: "Success",
-                                    description: data,
-                                }))
-                                .catch(error => notification.error({
-                                    message: "Error",
-                                    description: "Email Error",
-                                }));
-                        }).catch((error) => {
-                            notification.error({
-                                message: "Error",
-                                description: "PDF Generate error",
-                            })
-                        });
-                    }).catch((error) => {
-                        notification.error({
-                            message: "Error",
-                            description: "PDF Generate error",
-                        })
-                    });
-                })
-                .catch((err: any) => notification.error({
-                    message: "Error",
-                    description: "PDF Generate error",
-                }));
-        } else {
+        if (!order?.user) {
             notification.error({
                 message: "Error",
                 description: "User not assigned",
             })
+        } else {
+            setOpenPdf(true)
         }
     }
 
@@ -123,6 +58,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 </Space>
             }
         >
+            {openPdf && (<Invoice order={order} setOpenPdf={setOpenPdf} />)}
             <div id="exportSpace" ref={componentRef}>
                 <Descriptions title="Order Info" bordered column={2}>
                     <Descriptions.Item label="Order Number">{order.id}</Descriptions.Item>
