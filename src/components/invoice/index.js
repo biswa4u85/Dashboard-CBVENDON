@@ -38,7 +38,7 @@ export const Invoice = ({ order, setOpenPdf }) => {
         "html": `<!DOCTYPE html>
         <html>
           <head>
-            <title>Invoice from CBVENDON</title>
+            <title>Invoice from Wecarrybags</title>
             <style>
               table {
                 border-collapse: collapse;
@@ -56,7 +56,7 @@ export const Invoice = ({ order, setOpenPdf }) => {
             </style>
           </head>
           <body>
-            <h1>Invoice from CBVENDON</h1>
+            <h1>Invoice from Wecarrybags</h1>
             <p>Dear ${users.name},</p>
             <p>Thank you for your order.</p>
             <table>
@@ -78,7 +78,7 @@ export const Invoice = ({ order, setOpenPdf }) => {
               </tr>
             </table>
             <p>Regards,</p>
-            <p>CBVENDON</p>
+            <p>Wecarrybags</p>
           </body>
         </html>
         `
