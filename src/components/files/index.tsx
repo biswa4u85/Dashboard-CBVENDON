@@ -32,7 +32,7 @@ export const Files: React.FC<FilesProps> = ({ formProps, name, folder, count = 1
     const FileUpload = ({ onError, onSuccess, file }: any) => {
         setLoaders(true)
         const storage = getStorage();
-        const storageRef = ref(storage, `${folder}/${file.name}`);
+        const storageRef = ref(storage, `${folder}/${String(new Date().toLocaleTimeString())}/${file.name}`);
         const metadata = {
             contentType: file.type,
         };
